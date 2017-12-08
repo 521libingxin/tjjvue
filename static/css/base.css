@@ -1,0 +1,42 @@
+body{
+    background:url('../img/menucolor.jpg') repeat-y;
+}
+#app{
+    padding-left:150px;
+    padding-right:30px;
+    white-space:nowrap;
+}
+.menuleft{
+    margin-left:-150px;
+    width:150px;
+    display: inline-block;
+}
+.menuleft .ivu-menu .ivu-menu-item:hover,.menuleft .ivu-menu .ivu-menu-submenu-title:hover{
+    background:#d1dbe5;
+}
+.menuleft .ivu-menu-light{
+    background:none;
+}
+.menuleft .ivu-menu-vertical.ivu-menu-light:after{
+    background:none;
+}
+.main{
+    display: inline-block;
+    vertical-align: top;
+    width:100%;
+}
+.mainbox{
+    padding-left:30px;
+}
+.maintop{
+    height:30px;
+}
+.listtitle{
+    height: 30px;
+    border-radius: 4px;
+    margin: 15px 0;
+    padding: 0 15px;
+    line-height: 30px;
+    color: #6a778c;
+    background-color: #e5e9f2;
+}

@@ -8,6 +8,8 @@ import 'iview/dist/styles/iview.css';
 import ECharts from 'vue-echarts/components/ECharts.vue';
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
+import axios from 'axios'
+Vue.prototype.$ajax = axios
 Vue.use(iView);
 Vue.use(ECharts);
 Vue.component('chart', ECharts);
