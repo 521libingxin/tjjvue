@@ -40,3 +40,8 @@ body{
     color: #6a778c;
     background-color: #e5e9f2;
 }
+.icondiv{
+    background:url('../img/new-logo.png') no-repeat center center;
+    height:150px;
+
+}

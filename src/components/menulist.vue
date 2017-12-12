@@ -1,10 +1,11 @@
 <template>
   <div class="hello">
-        <Menu :active-name="activeobj.selected" @on-select="menuselect" @on-open-change="openchange" theme="light" width="auto" ::open-names="[activeobj.openname]" >
-            <div style="height:100px;"></div>
+        <div class="icondiv"></div>
+        <Menu :active-name="activeobj.selected" @on-select="menuselect" @on-open-change="openchange" theme="light" width="auto" :open-names="activeobj.openname" ref="child1" >
+            
             <template v-for="(item, index) in activeobj.activelist">
                 <template v-if="item.type == 0">
-                    <MenuItem :name="index" >
+                    <MenuItem :name="item.href" >
                         <Icon :type="item.icon" ></Icon>
                         <span class="layout-text">{{item.name}}</span>
                     </MenuItem>
@@ -13,10 +14,10 @@
                     <Submenu :name="index">
                         <template slot="title" >
                             <Icon :type="item.icon"></Icon>
-                            {{item.name}}
+                            {{item.name}}{{index}}
                         </template>
                         <template v-for="(item2, index2) in item.child">
-                            <MenuItem :name="index+'-'+index2" >{{item2.name}}</MenuItem>
+                            <MenuItem :name="item2.href" >{{item2.name}}</MenuItem>
                         </template>
                     </Submenu>
                 </template>
@@ -62,8 +63,8 @@ export default {
       ok:true,
       msg: 'Welcome to Your Vue.js App',
       activeobj:{
-          selected:"4",
-          openname:'2',
+          selected:"#/services",
+          openname:[0],
           activelist:[
               {
                   'type':0,
@@ -78,23 +79,23 @@ export default {
                   'child':[
                       {
                           'name':'服务开启',
-                          'href':'#/123'
+                          'href':'#/star/services'
                       },
                       {
                           'name':'新建推广',
-                          'href':'#/1234'
+                          'href':'#/star/generalize'
                       },
                       {
                           'name':'推广管理',
-                          'href':'#/12345'
+                          'href':'#/star/manage'
                       },
                       {
                           'name':'数据报表',
-                          'href':'#/123456'
+                          'href':'#/star/report'
                       },
                       {
                           'name':'微站',
-                          'href':'#/1234567'
+                          'href':'#/star/microstation'
                       }
                   ]
               },
@@ -106,38 +107,46 @@ export default {
               },
               {
                   'type':0,
-                  'name':'lbx',
-                  'icon':'ios-keypad',
-                  'href':'#/1234567'
-              },
-              {
-                  'type':0,
                   'name':'答疑解惑',
                   'icon':'help',
-                  'href':'#/1234567'
+                  'href':'#/help'
               }
           ]
       }
     }
   },
   mounted () {
-      
+      if(localStorage.openchange == 1 || this.$route.path.indexOf("/star") > -1){
+        localStorage.openchange = 1;
+        this.activeobj['openname'] = [1];
+      }
+      console.log(this.$route.path);
+      //this.activeobj['openname'] = [1];
+      this.activeobj['selected'] = "#"+this.$route.path;
+      this.$nextTick( () => {
+         this.$refs.child1.updateOpened();
+      })
   },
   methods: {
     menuselect (a) {
       console.log(a);
-      var numstr = ""+a;
+      /*var numstr = ""+a;
       if(numstr.indexOf("-") > -1){
         console.log(this.activeobj.activelist[numstr.split("-")[0]]['child'][numstr.split("-")[1]].href);
         window.location.href = this.activeobj.activelist[numstr.split("-")[0]]['child'][numstr.split("-")[1]].href;
       }else{
         console.log(this.activeobj.activelist[a].href);
         window.location.href = this.activeobj.activelist[a].href;
-      }
-      //window.location.href = 
+      }*/
+      window.location.href = a
     },
     openchange (b) {
-      console.log(b.length);
+      if(b.length == 2){
+          localStorage.openchange = 1;
+      }else{
+          localStorage.openchange = 0;
+      }
+        console.log( b);
     }
   }
 }
