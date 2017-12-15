@@ -1,6 +1,9 @@
 body{
     background:url(../static/img/menucolor.jpg) repeat-y;
 }
+html{
+    min-width: 1000px;
+}
 #app{
     padding-left:150px;
     padding-right:30px;
