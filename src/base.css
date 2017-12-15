@@ -1,5 +1,5 @@
 body{
-    background:url(../img/menucolor.jpg) repeat-y;
+    background:url(../static/img/menucolor.jpg) repeat-y;
 }
 #app{
     padding-left:150px;
@@ -42,7 +42,7 @@ body{
     background-color: #e5e9f2;
 }
 .icondiv{
-    background:url('../img/new-logo.png') no-repeat center center;
+    background:url('../static/img/new-logo.png') no-repeat center center;
     height:150px;
 
 }

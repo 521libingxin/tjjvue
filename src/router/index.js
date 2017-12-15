@@ -15,9 +15,23 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/main',
       name: 'main',
-      component: main
+      component: main,
+      children:[
+        {
+          path:'account',
+          component:account
+        },
+        {
+          path:'test',
+          component:test
+        },
+        {
+          path:'help',
+          component: help
+        }
+      ]
     },
     {
       path: '/account',
@@ -30,27 +44,27 @@ export default new Router({
       component: test
     },
     {
-      path:'/star/services',
+      path:'/star_services',
       name: 'services',
       component: services
     },
     {
-      path:'/star/generalize',
+      path:'/star_generalize',
       name: 'generalize',
       component: generalize
     },
     {
-      path:'/star/microstation',
+      path:'/star_microstation',
       name: 'microstation',
       component: microstation
     },
     {
-      path:'/star/manage',
+      path:'/star_manage',
       name: 'manage',
       component: manage
     },
     {
-      path:'/star/report',
+      path:'/star_report',
       name: 'report',
       component: report
     },
@@ -58,6 +72,10 @@ export default new Router({
       path:'/help',
       name: 'help',
       component: help
+    },
+    {
+      path:'*',
+      redirect:'/main'
     }
   ]
 })

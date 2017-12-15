@@ -22,35 +22,6 @@
                     </Submenu>
                 </template>
             </template>
-            <!--<template v-if="ok">
-                <MenuItem name="1" >
-                    <Icon type="home" ></Icon>
-                    <span class="layout-text">首页</span>
-                </MenuItem>
-            </template>
-            <div>
-                <Submenu name="2">
-                    <template slot="title" >
-                        <Icon type="star"></Icon>
-                        全网通
-                    </template>
-                    <MenuItem name="2-1">服务开启</MenuItem>
-                    <MenuItem name="2-2">新建推广</MenuItem>
-                    <MenuItem name="2-3">推广管理</MenuItem>
-                    <MenuItem name="2-4">数据报表</MenuItem>
-                    <MenuItem name="2-5">微站</MenuItem>
-                </Submenu>
-            </div>
-            <div>
-                <MenuItem name="3" href="/account">
-                    <Icon type="ios-keypad" ></Icon>
-                    <span class="layout-text">账户</span>
-                </MenuItem>
-            </div>
-            <MenuItem name="4">
-                <Icon type="help" ></Icon>
-                <span class="layout-text">答疑解惑</span>
-            </MenuItem>-->
         </Menu>
   </div>
 </template>
@@ -70,7 +41,7 @@ export default {
                   'type':0,
                   'name':'首页',
                   'icon':'home',
-                  'href':'#/'
+                  'href':'#/main'
               },
               {
                   'type':1,
@@ -79,23 +50,23 @@ export default {
                   'child':[
                       {
                           'name':'服务开启',
-                          'href':'#/star/services'
+                          'href':'#/star_services'
                       },
                       {
                           'name':'新建推广',
-                          'href':'#/star/generalize'
+                          'href':'#/star_generalize'
                       },
                       {
                           'name':'推广管理',
-                          'href':'#/star/manage'
+                          'href':'#/star_manage'
                       },
                       {
                           'name':'数据报表',
-                          'href':'#/star/report'
+                          'href':'#/star_report'
                       },
                       {
                           'name':'微站',
-                          'href':'#/star/microstation'
+                          'href':'#/star_microstation'
                       }
                   ]
               },
@@ -130,14 +101,6 @@ export default {
   methods: {
     menuselect (a) {
       console.log(a);
-      /*var numstr = ""+a;
-      if(numstr.indexOf("-") > -1){
-        console.log(this.activeobj.activelist[numstr.split("-")[0]]['child'][numstr.split("-")[1]].href);
-        window.location.href = this.activeobj.activelist[numstr.split("-")[0]]['child'][numstr.split("-")[1]].href;
-      }else{
-        console.log(this.activeobj.activelist[a].href);
-        window.location.href = this.activeobj.activelist[a].href;
-      }*/
       window.location.href = a
     },
     openchange (b) {
