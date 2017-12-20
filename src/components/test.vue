@@ -92,7 +92,7 @@ export default {
   mounted () {
       this.$ajax.get('/json/a.json')
         .then(function (response) {
-            console.log(response);
+            console.log(response.data);
         })
         .catch(function (response) {
             console.log(response);

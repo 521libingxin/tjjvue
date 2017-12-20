@@ -75,7 +75,7 @@ export default new Router({
     },
     {
       path:'*',
-      redirect:'/main'
+      redirect:'/main'//重定向
     }
   ]
 })

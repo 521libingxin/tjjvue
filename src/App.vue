@@ -2,7 +2,8 @@
   <div id="app">
     <div class="menuleft">
         <menulist></menulist>
-    </div><div class="main">
+    </div>
+    <div class="main">
         <div class="mainbox">
             <div class="maintop"></div>
             <router-view/>
@@ -54,6 +55,6 @@ export default {
 }
 </script>
 <style>
-    @import './base.css';
+  @import './base.css';
 </style>
 
