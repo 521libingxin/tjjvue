@@ -22,11 +22,13 @@
     </div>
     <div class="listtitle">系统公告</div>
     <div class="listtitle">推广状态通知</div>
+    <a v-on:click="this.fetch(2,5)">jia</a>
     <router-view/>
   </div>
 </template>
 
 <script>
+import {fetch} from '@/store/new_file'
 export default {
   name: 'main',
   data () {
@@ -34,9 +36,15 @@ export default {
       username: '沈阳礼品回收'
     }
   },
+  mounted () {
+  	fetch(1,2);
+  },
   methods: {
     linkfor (a) {
       this.$router.push('/main/'+a);
+    },
+    fetch1(a,b){
+    	fetch(a,b)
     }
   }
 }
