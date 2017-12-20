@@ -31,11 +31,9 @@ export default {
   name: 'menulist',
   data () {
     return {
-      ok:true,
-      msg: 'Welcome to Your Vue.js App',
       activeobj:{
-          selected:"#/services",
-          openname:[0],
+          selected:"#/star_report",
+          openname:[1],
           activelist:[
               {
                   'type':0,
@@ -96,6 +94,7 @@ export default {
       this.activeobj['selected'] = "#"+this.$route.path;
       this.$nextTick( () => {
          this.$refs.child1.updateOpened();
+         this.$refs.child1.updateActiveName();
       })
   },
   methods: {

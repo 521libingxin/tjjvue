@@ -9,6 +9,9 @@ import manage from '@/view/manage'
 import report from '@/view/report'
 import help from '@/view/help'
 import test from '@/components/test'
+import a from '@/view/a'
+import b from '@/view/b'
+import c from '@/view/c'
 
 Vue.use(Router)
 
@@ -61,7 +64,22 @@ export default new Router({
     {
       path:'/star_manage',
       name: 'manage',
-      component: manage
+      component: manage,
+      children:[
+      	{
+      		path:'a',
+      		component:a
+      	},
+      	{
+      		path:'b',
+      		component:b
+      	},
+      	{
+      		path:'c',
+      		component:c
+      	},
+      ]
+      
     },
     {
       path:'/star_report',
@@ -75,7 +93,7 @@ export default new Router({
     },
     {
       path:'*',
-      redirect:'/main'//重定向
+      redirect:'/main'
     }
   ]
 })
