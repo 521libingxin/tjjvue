@@ -1,14 +1,19 @@
 <template>
     <div>
-        <Table border ref="selection" :columns="columns4" :data="data1"></Table>
-        <!--<Button @click="handleSelectAll(true)">Set all selected</Button>
-        <Button @click="handleSelectAll(false)">Cancel all selected</Button>-->
+        <Table border @on-selection-change="selchange" ref="selection" :columns="columns4" :data="data1"></Table>
+       <!-- <Button @click="handleSelectAll(true)">Set all selected</Button>-->
+        <Button v-on:click="sfsdfs">Cancel all selected</Button>
+        {{sfsdfs}}
     </div>
 </template>
 <script>
     export default {
         data () {
             return {
+            	sfsdfs: ()=>{
+            		console.log(this.finaldata)
+            	},
+            	finaldata:[],
                 columns4: [
                     {
                         type: 'selection',
@@ -21,20 +26,19 @@
                         key: 'name',
                         render: (h, params) => {
                             return h('div', [
-                                h('Button', {
+                                h('i-switch', {
                                     props: {
-                                        type: 'primary',
-                                        size: 'small'
+                                      //true-value:params.row.select
+                                      value:params.row.name,
+                                      'true-value':0,
+                                      'false-value':1
                                     },
-                                    style: {
-                                        marginRight: '5px'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.show(params.index)
-                                        }
-                                    }
-                                }, 'View'),
+                                    on:{
+	                                    'on-change':(changeval) => {
+	                                        console.log(changeval);
+	                                    }
+	                                }
+                                })
                             ]);
                         }
                     },
@@ -49,27 +53,27 @@
                 ],
                 data1: [
                     {
-                        name: 'John Brown',
+                        name: 0,
                         age: 18,
                         address: 'New York No. 1 Lake Park',
                     },
                     {
-                        name: 'Jim Green',
+                        name: 1,
                         age: 24,
                         address: 'London No. 1 Lake Park',
                     },
                     {
-                        name: 'Joe Black',
+                        name: 0,
                         age: 30,
                         address: 'Sydney No. 1 Lake Park',
                     },
                     {
-                        name: 'Jon Snow',
+                        name: 1,
                         age: 26,
                         address: 'Ottawa No. 2 Lake Park',
                     },
                     {
-                        name: 'Jon Snow',
+                        name: 1,
                         age: 26,
                         address: 'Ottawa No. 2 Lake Park',
                     }
@@ -77,7 +81,13 @@
             }
         },
         methods: {
-            
+            selchange(index){
+            	console.log(index)
+            	this.finaldata = index;
+            },
+            haha(){
+            	console.log('haha');
+            }
         }
     }
 </script>
