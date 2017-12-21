@@ -22,7 +22,7 @@
     </div>
     <div class="listtitle">系统公告</div>
     <div class="listtitle">推广状态通知</div>
-    <a v-on:click="this.fetch(2,5)">jia</a>
+    <a v-on:click="fetch1(2,5)">jia</a>
     <router-view/>
   </div>
 </template>
