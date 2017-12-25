@@ -1,15 +1,27 @@
 <template>
     <div>
-    	<Button v-on:click="openall">全部开启</Button>
-    	<Button v-on:click="closeall">全部关闭</Button>
+    	<Button v-on:click="openall(0)">全部开启</Button>
+    	<Button v-on:click="openall(1)">全部关闭</Button>
         <Table border @on-selection-change="selchange" @on-select-all="selall"@on-select="onselect" @on-select-cancel="selcanc" ref="selection" :columns="columns4" :data="data1"></Table>
-        <Button  type="primary" v-on:click="sfsdfs">获取已选项</Button>
+        <div style="margin: 10px;overflow: hidden">
+	        <div style="float: right;">
+	            <Page :total="100" :page-size="20" :current="current" @on-change="pagechange"></Page>
+	        </div>
+	    </div>
+        <Button type="primary" v-on:click="sfsdfs">获取已选项</Button>
     </div>
 </template>
 <script>
     export default {
         data () {
             return {
+            	current:1,
+            	pagechange:(a)=>{
+            		this.current = a;
+            		console.log(this.current)
+            		this.data1 = this.data2;
+            		this.finaldata = [];
+            	},
             	sfsdfs: ()=>{
             		console.log(this.finaldata)
             	},
@@ -79,56 +91,68 @@
                         id: 26,
                         status: 'New5',
                     }
+                ],
+                data2: [
+                    {
+                        pause: 1,
+                        id: 18,
+                        status: '东方闪电1',
+                    },
+                    {
+                        pause: 0,
+                        id: 24,
+                        status: '东方闪电2',
+                    },
+                    {
+                        pause: 0,
+                        id: 30,
+                        status: '东方闪电3',
+                    },
+                    {
+                        pause: 1,
+                        id: 27,
+                        status: '东方闪电4',
+                    },
+                    {
+                        pause: 1,
+                        id: 26,
+                        status: '东方闪电5',
+                    }
                 ]
             }
         },
         methods: {
             selchange(index){
             	this.finaldata = index;
-            	//console.log(index)
+            	if(this.finaldata.length>0){
+            		for(let i=0;i<this.data1.length;i++){
+            			var has = false;
+	            		for(let j=0;j<this.finaldata.length;j++){
+	            			if(this.data1[i].id==this.finaldata[j].id){
+	            				has = true;
+	            				this.data1[i]._checked = true;
+	            			}
+	            		}
+	            		if(!has){
+	            			this.data1[i]._checked = false;
+	            		}
+	            	}
+            	}
             },
-            openall(){
+            openall(a){
             	if(this.finaldata.length>0){
             		for(let i=0;i<this.data1.length;i++){
 	            		for(let j=0;j<this.finaldata.length;j++){
 	            			if(this.data1[i].id==this.finaldata[j].id){
-	            				this.data1[i].pause = 0;
+	            				this.data1[i].pause = a;
 	            			}
 	            		}
 	            	}
             	}
             },
-            closeall(){
-            	if(this.finaldata.length>0){
-            		for(let i=0;i<this.data1.length;i++){
-	            		for(let j=0;j<this.finaldata.length;j++){
-	            			if(this.data1[i].id==this.finaldata[j].id){
-	            				this.data1[i].pause = 1;
-	            			}
-	            		}
-	            	}
-            	}
-            },
-            onselect(a,b){
-            	for(let i=0;i<this.data1.length;i++){
-            		if(this.data1[i].id==b.id){
-            			this.data1[i]._checked = true;
-            		}
-            	}
-            },
-            selcanc(a,b){
-            	for(let i=0;i<this.data1.length;i++){
-            		if(this.data1[i].id==b.id){
-            			this.data1[i]._checked = false;
-            		}
-            	}
-            },
-            selall(data){
-            	this.finaldata = this.data1;
-            	for(let i=0;i<this.data1.length;i++){
-            		this.data1[i]._checked = true;
-            	}
-            }
+            onselect(a,b){},
+            selcanc(a,b){},
+            selall(data){}
         }
     }
 </script>

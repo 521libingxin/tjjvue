@@ -1,22 +1,27 @@
 body{
-    background:url(../static/img/menucolor.jpg) repeat-y;
+    background:#f4f4f9 url(../static/img/menucolor.jpg) repeat-y;
 }
 html{
     min-width: 1000px;
 }
 #app{
-    padding-left:150px;
+    padding-left:230px;
     padding-right:30px;
     white-space:nowrap;
 }
 .menuleft{
-    margin-left:-150px;
-    width:150px;
-    display: inline-block;
+    width:230px;
+    position: fixed;
+    top: 0;
+    left:0;
+    z-index: 100;
 }
+.ivu-menu-item{color:#fff}
+
 .menuleft .ivu-menu .ivu-menu-item:hover,.menuleft .ivu-menu .ivu-menu-submenu-title:hover{
-    background:#d1dbe5;
+   color:#fff; background:url(../static/img/lefi-hover.png) no-repeat;
 }
+.ivu-menu-item-active{color:#fff; background:url(../static/img/lefi-hover.png) no-repeat;}
 .menuleft .ivu-menu-light{
     background:none;
 }
@@ -24,14 +29,19 @@ html{
     background:none;
 }
 .main{
-    display: inline-block;
-    vertical-align: top;
+    margin-top: 120px;
     width:100%;
     font-size:16px;
+    background-color: #fff;
+    margin-left: 30px;
 }
 .mainbox{
     padding-left:30px;
+    width:68%;
+    float: left;
+    background-color: #fff;
 }
+.main-right{float:right; background-color: #fff;min-width: 400px;width:30%}
 .maintop{
     height:30px;
 }
@@ -46,7 +56,7 @@ html{
 }
 .icondiv{
     background:url('../static/img/new-logo.png') no-repeat center center;
-    height:150px;
+    height:90px;
 
 }
 .accountul{
@@ -70,3 +80,24 @@ html{
 .clearboth{
     clear:both;
 }
+.ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu) {
+    color: #fff;
+    border-right:0;
+    z-index: 2;
+}
+.ivu-menu-item{height:50px; padding:0; line-height: 50px; border: 0;}
+.cipp{background:url('../static/img/tip.png') no-repeat center center;width:20px;height: 20px;margin-right: 10px;float: left; margin-left: 6px;}
+.iaccount{background-position: -4px -5px; }
+.layout-text{float: left; height: 20px; line-height: 20px; font-weight: bold;}
+.iservices{background-position: -26px -5px;}
+.ic-extension{background-position: -46px -5px;}
+.im-extension{background-position: -67px -5px;}
+.idata{background-position: -90px -5px;}
+.ianswer{background-position: -113px -5px;}
+.isafe{background-position: -136px -5px;}
+.inews{background-position: -159px -5px;}
+.main-head{height:90px; width:100%; position:absolute;top:0;left:0; z-index: 2;}
+.main-head-con{ margin-left: 230px;background-color: #fff;height:90px; }
+
+
+

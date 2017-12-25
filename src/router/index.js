@@ -8,11 +8,15 @@ import generalize from '@/view/generalize'
 import manage from '@/view/manage'
 import report from '@/view/report'
 import help from '@/view/help'
+import datalist from '@/view/datalist'
+import answer from '@/view/answer'
+import safe from '@/view/safe'
+import news from '@/view/news'
 import test from '@/components/test'
 import a from '@/view/a'
 import b from '@/view/b'
 import c from '@/view/c'
-
+import login from '@/view/login'
 Vue.use(Router)
 
 export default new Router({
@@ -42,54 +46,45 @@ export default new Router({
       component: account
     },
     {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
       path: '/test',
       name: 'test',
       component: test
     },
     {
-      path:'/star_services',
+      path: '/services',
       name: 'services',
       component: services
     },
-    {
-      path:'/star_generalize',
-      name: 'generalize',
-      component: generalize
-    },
-    {
-      path:'/star_microstation',
-      name: 'microstation',
-      component: microstation
-    },
-    {
-      path:'/star_manage',
-      name: 'manage',
-      component: manage,
-      children:[
-      	{
-      		path:'a',
-      		component:a
-      	},
-      	{
-      		path:'b',
-      		component:b
-      	},
-      	{
-      		path:'c',
-      		component:c
-      	},
-      ]
-      
-    },
-    {
-      path:'/star_report',
-      name: 'report',
-      component: report
-    },
+
     {
       path:'/help',
       name: 'help',
       component: help
+    },
+    {
+      path:'/datalist',
+      name: 'datalist',
+      component: datalist
+    },
+    {
+      path:'/answer',
+      name: 'answer',
+      component: answer
+    },
+    {
+      path:'/safe',
+      name: 'safe',
+      component:safe
+    },
+    {
+      path:'/news',
+      name: 'news',
+      component:news
     },
     {
       path:'*',
