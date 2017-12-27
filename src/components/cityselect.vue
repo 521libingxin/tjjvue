@@ -19,6 +19,8 @@
                     {{city.area_name}}
                     <span v-on:click="changeparent(city,false)">x</span>
                 </span>
+            </template>
+            <template v-for="city in parent_obj.parent_city" >
                 <template v-if="city.childnum != city.childs.length || city.id == -1">
                     <template v-for="ccity in city.childs">
                         <span v-if="parent_obj.selectcity.indexOf(','+ccity.id+',') > -1">
@@ -69,14 +71,14 @@
 <script>
 export default {
   name: 'cityselect',
-  // props: ['item'],
+  props: ['citys','citylist','province'],
   data () {
       return {
           value1: '',//搜索的值
           data1:[],//搜索数组
           searchobjs:{},//搜索的对象
           modal:false, //弹框是否打开
-          province:'',
+          //province:'',
           defaultcity:[], //默认城市——预留
           // citys:[],//已选城市
           //selectcity:',', //已选城市id匹配字符串
@@ -84,7 +86,7 @@ export default {
           all_city:[], //后台返回处理后的数据
           checkout:',香港,澳门,台湾,', //排除显示的城市
           parent_obj:{
-              selectcity:',',
+              selectcity:'',
               parent_city:[]
           },
           modal_obj:{
@@ -95,13 +97,12 @@ export default {
           allcity362:','
       }
   },
-  mounted () {
-      this.$ajax.get('/json/city.json')
-        .then((response) => {
-            console.log(this[this.checkedobj]);
-            let citys = response.data.citys;
-            this.all_city = response.data.city_list;
-            this.province = response.data.province;
+  watch:{
+    province (val,oldVal) {
+        if(val != oldVal){
+            let citys_str = ","+this.citys.join(",")+",";
+            this.all_city = this.citylist;
+            this.parent_obj.selectcity = ",";
             /*第一次组装数据，删掉直辖市，排除香港等*/
             let zxobj = {
                 area_name:"直辖市",
@@ -118,34 +119,36 @@ export default {
                 }
             }
             // 第二次数据组装，形成父类包含子类的结构 
-            for(let i in response.data.city_list){
-                let parentid = response.data.city_list[i].pid;
+            for(let i in this.all_city){
+                let parentid = this.all_city[i].pid;
                 if(parentid == 1){
-                    this.parent_obj.parent_city.push(response.data.city_list[i]);
+                    this.parent_obj.parent_city.push(this.all_city[i]);
                 }else{
                     for(let j in this.parent_obj.parent_city){
                         if(parentid == this.parent_obj.parent_city[j].id){
-                            this.allcity362 += response.data.city_list[i].id + ",";
+                            this.allcity362 += this.all_city[i].id + ",";
                             if(!this.parent_obj.parent_city[j].childs){
                                 this.parent_obj.parent_city[j].childs = [];
                                 this.parent_obj.parent_city[j].childnum = 0;
                             }
-                            this.parent_obj.parent_city[j].childs.push(response.data.city_list[i]);
+                            this.parent_obj.parent_city[j].childs.push(this.all_city[i]);
                         }
                     }
                     //this.child_city.push(response.data.city_list[i]);
                 }
+                if(citys_str.indexOf(","+this.all_city[i].baidu+",") > -1){
+                    if(parentid !== 1){
+                        this.changechild(this.all_city[i],true);
+                    }
+                }
             }
-            // 计算那些城市选中 
-            this.parent_obj.selectcity = ",";
-            for(let k in citys){
-                this.addparentnum(citys[k],1);
-                this.parent_obj.selectcity += citys[k].id + ',';
+            for(let i in this.parent_obj.parent_city){
+                if(citys_str.indexOf(","+this.parent_obj.parent_city[i].baidu+",") > -1){
+                    this.changeparent(this.parent_obj.parent_city[i],true);
+                }
             }
-        })
-        .catch(function (response) {
-            console.log(response);
-        });
+        }
+    }
   },
   methods: {
       searchcity(){ //搜索添加城市
@@ -286,6 +289,7 @@ export default {
             }
           }
           console.log(submitarray);
+          this.$emit('cityselected',submitarray);
       }
   }
 }

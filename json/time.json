@@ -1,0 +1,44 @@
+{
+    "time": [
+        {
+            "weekDay": 1,
+            "startHour": 1,
+            "endHour": 7
+        },
+        {
+            "weekDay": 2,
+            "startHour": 5,
+            "endHour": 6
+        },
+        {
+            "weekDay": 3,
+            "startHour": 0,
+            "endHour": 24
+        },
+        {
+            "weekDay": 4,
+            "startHour": 5,
+            "endHour": 6
+        },
+        {
+            "weekDay": 5,
+            "startHour": 3,
+            "endHour": 6
+        },
+        {
+            "weekDay": 6,
+            "startHour": 2,
+            "endHour": 6
+        },
+        {
+            "weekDay": 6,
+            "startHour": 9,
+            "endHour": 10
+        },
+        {
+            "weekDay": 7,
+            "startHour": 2,
+            "endHour": 10
+        }
+    ]
+}
