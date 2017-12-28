@@ -61,6 +61,13 @@ export default {
     }
   },
   mounted () {
+  },
+  methods: {
+      start(){
+        this.times = [];
+        this.daylist = [];
+        this.subobj = {};
+        this.time_str = ',';
         for(let i = 0;i < 24;i++){
             let obj = {
                 id:"x_"+i,
@@ -76,14 +83,11 @@ export default {
             }
             this.daylist.push(obj);
         }
-  },
-  methods: {
-      start(){
         let timelist = this.timelist;
         for(let i in timelist){
-            let day = timelist[i].weekDay;
-            let start = timelist[i].startHour;
-            let end = timelist[i].endHour;
+            let day = parseInt(timelist[i].weekDay);
+            let start = parseInt(timelist[i].startHour);
+            let end = parseInt(timelist[i].endHour);
             for(let j = 0; j < end-start;j++){
                 let timestr = day+"-"+(start+j);
                 this.addpoint(timestr);
@@ -179,6 +183,7 @@ export default {
         }
         console.log(timesubmit);
         this.$emit('timeselected',timesubmit);
+        //this.timelist = timesubmit;
       }
   }
 }

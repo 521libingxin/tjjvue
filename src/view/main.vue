@@ -3,7 +3,7 @@
     <h3>{{username}}，欢迎回来</h3>
     <div class="listtitle">我的账户</div>
     <cityselect :citys="citys" @cityselected="cityselected" :province="province" :citylist="citylist" ></cityselect>
-    提交后显示：{{cityselectedshow}}
+    修改后显示：{{citys}}
     <timeselect :timelist="timelist" @timeselected="timeselected" ></timeselect>
     修改后显示：{{timelist}}
     <div class="accountul">
@@ -41,7 +41,6 @@ export default {
       citylist:[],
       timelist:[],
       province:'',
-      cityselectedshow:[],
       username: '沈阳礼品回收'
     }
   },
@@ -69,7 +68,7 @@ export default {
     	fetch(a,b)
     },
     cityselected (back){
-      this.cityselectedshow = back;
+      this.citys = back;
     },
     timeselected (back){
       this.timelist = back;

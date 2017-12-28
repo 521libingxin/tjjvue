@@ -30,10 +30,8 @@
                     </template>
                 </template>
             </template>
-        </template>
+        </template><br>
         <Button v-on:click="addcity()">打开</Button>
-        <br>
-        <Button v-on:click="submit()">提交</Button>
      </div>
     <Modal v-model="modal" width="360" :mask-closable="false">
             <p slot="header" style="color:#f60;text-align:center">
@@ -98,6 +96,13 @@ export default {
       }
   },
   watch:{
+    parent_obj:{
+        handler (val,oldVal){
+            console.log("change");
+            this.submit();
+        },
+        deep:true
+    },
     province (val,oldVal) {
         if(val != oldVal){
             let citys_str = ","+this.citys.join(",")+",";
@@ -288,7 +293,6 @@ export default {
                 }
             }
           }
-          console.log(submitarray);
           this.$emit('cityselected',submitarray);
       }
   }
